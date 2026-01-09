@@ -1,6 +1,6 @@
-# BigCard Training - Sistema de Avaliação
+# Sistema de Avaliação
 
-Sistema web de avaliação técnica para treinamento de operadores de sistemas de informática da BigCard. Desenvolvido em Python puro, sem dependências externas, com **perguntas totalmente configuráveis via arquivo de texto**.
+Sistema web de avaliação técnica para treinamentos operacionais. Desenvolvido em Python puro, sem dependências externas, com **perguntas totalmente configuráveis via arquivo de texto**.
 
 ## 📋 Sobre
 
