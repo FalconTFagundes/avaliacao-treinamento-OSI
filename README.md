@@ -43,10 +43,11 @@ avaliacao-treinamento-OSI/
 
 ## 📸 Screenshots do Sistema
 
-<img width="1365" height="680" alt="1" src="https://github.com/user-attachments/assets/30fe3639-7c27-4845-b975-dec8a8d24d86" />
-<img width="1348" height="679" alt="2" src="https://github.com/user-attachments/assets/faa6533d-8aa3-4ce5-9784-a923c200652c" />
-<img width="1365" height="680" alt="3" src="https://github.com/user-attachments/assets/fb335978-4274-4dc2-8d70-5a048abe2f42" />
-<img width="1350" height="623" alt="4" src="https://github.com/user-attachments/assets/58128e5a-dbc9-4078-9b93-71c5638411de" />
+<img width="1365" height="680" alt="1" src="https://github.com/user-attachments/assets/6405a26e-34c0-487c-bada-22078c2a0cb1" />
+<img width="1348" height="679" alt="2" src="https://github.com/user-attachments/assets/3a58d2c3-5858-4aad-8372-c5a91c11e769" />
+<img width="1365" height="680" alt="3" src="https://github.com/user-attachments/assets/62ac5272-344c-4db5-8ac9-216b88d3bb97" />
+<img width="1350" height="623" alt="4" src="https://github.com/user-attachments/assets/c43e3861-c206-4b20-8202-2d5cc3d4a69c" />
+
 
 
 ## 🔧 Como Usar
