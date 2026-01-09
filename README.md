@@ -96,4 +96,4 @@ Sistema projetado para uso em rede local corporativa. Não possui autenticação
 
 ## 📝 Licença
 
-Uso interno BigCard.
+Este projeto não possui licença comercial e é disponibilizado apenas para fins educacionais e demonstrativos.
