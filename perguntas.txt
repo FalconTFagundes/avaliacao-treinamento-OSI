@@ -1,0 +1,31 @@
+# PERGUNTAS
+# Formato: Uma pergunta por linha
+# Linhas vazias e linhas começando com # são ignoradas
+# Para questões de múltipla escolha, use o formato especial abaixo
+
+# PERGUNTAS
+# Formato: Uma pergunta por linha
+# Linhas vazias e linhas começando com # são ignoradas
+# Para questões de múltipla escolha, use o formato especial abaixo
+
+# QUESTÕES ABERTAS (Respostas em texto livre)
+1. Pergunta 1
+2. Pergunta 2
+3. Pergunta 3
+4. Pergunta 4
+5. Pergunta 5
+6. Pergunta 6
+
+# QUESTÃO DE MÚLTIPLA ESCOLHA
+# Use o formato: NUMERO. PERGUNTA [MULTIPLA_ESCOLHA]
+# Seguido das alternativas em linhas subsequentes começando com a) b) c) etc
+7. Pergunta 7 [MULTIPLA_ESCOLHA]
+a) Alternativa A
+b) Alternativa B
+c) Alternativa C
+d) Alternativa D
+e) Alternativa E
+
+# MAIS QUESTÕES ABERTAS
+8. Pergunta 8
+9. Pergunta 9
