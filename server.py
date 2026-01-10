@@ -25,6 +25,7 @@ class ConfigLoader:
         self.instituicao = "BIGCARD"  # Valor padrão
         self.cor = "#0066cc"  # Azul padrão
         self.cor_rgb = (0, 102, 204)  # RGB para PDF
+        self.cargo = "Operador de Sistemas de Informática"  # Valor padrão
         self.load_config()
     
     def load_config(self):
@@ -52,6 +53,8 @@ class ConfigLoader:
                         elif key == 'COR':
                             self.cor = value
                             self.cor_rgb = self._parse_color(value)
+                        elif key == 'CARGO':
+                            self.cargo = value
         except Exception as e:
             print(f"⚠️  Erro ao ler {self.filename}: {e}. Usando valores padrão.")
     
@@ -101,6 +104,9 @@ class ConfigLoader:
     
     def get_cor_rgb(self):
         return self.cor_rgb
+    
+    def get_cargo(self):
+        return self.cargo
 
 class QuestionLoader:
     """Carrega e gerencia as perguntas do arquivo de texto"""
@@ -189,6 +195,7 @@ try:
     print(f"✅ Configurações carregadas:")
     print(f"   • Instituição: {config_loader.get_instituicao()}")
     print(f"   • Cor: {config_loader.get_cor()} (RGB: {config_loader.get_cor_rgb()})")
+    print(f"   • Cargo: {config_loader.get_cargo()}")
 except Exception as e:
     print(f"❌ ERRO ao carregar configurações: {e}")
     exit(1)
@@ -271,6 +278,7 @@ def get_formulario_html():
     instituicao = config_loader.get_instituicao()
     cor = config_loader.get_cor()
     cor_rgb = config_loader.get_cor_rgb()
+    cargo = config_loader.get_cargo()
     
     # Gera o HTML das questões
     questions_html = ""
@@ -642,7 +650,7 @@ def get_formulario_html():
       pdf.setFont(undefined, 'normal');
       pdf.text('concluiu e enviou as respostas da', 105, 105, {{ align: 'center' }});
       pdf.text('Avaliação de Treinamento Técnico', 105, 113, {{ align: 'center' }});
-      pdf.text('Operador de Sistemas de Informática', 105, 121, {{ align: 'center' }});
+      pdf.text('{cargo}', 105, 121, {{ align: 'center' }});
       
       // Info
       pdf.setFontSize(10);

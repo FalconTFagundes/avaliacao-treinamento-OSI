@@ -6,6 +6,17 @@
 
 INSTITUICAO: BIGCARD
 
+# CARGO/FUNÇÃO
+# Este cargo aparecerá no certificado PDF
+
+# Exemplos:
+# CARGO: Operador de Sistemas de Informática
+# CARGO: Analista de Suporte Técnico
+# CARGO: Técnico em Informática
+# CARGO: Especialista em TI
+
+CARGO: Operador de Sistemas de Informática
+
 # COR PRINCIPAL DO SISTEMA
 # Esta cor será usada em:
 # - Bordas do cabeçalho
@@ -25,5 +36,5 @@ INSTITUICAO: BIGCARD
 # COR: #ffc107       → Amarelo/dourado
 # COR: #6f42c1       → Roxo
 # COR: 255,0,0       → Vermelho (RGB)
-#
-COR: blue
+
+COR: #0066cc
