@@ -45,9 +45,9 @@ avaliacao-treinamento-OSI/
 
 ## 📸 Screenshots do Sistema
 
-<img width="1365" height="680" alt="1" src="https://github.com/user-attachments/assets/72a27242-94f2-4180-851c-3bb5f1e28c24" />
-<img width="1365" height="680" alt="3" src="https://github.com/user-attachments/assets/103dbb79-305c-41c7-a9ab-8a79768ba335" />
-<img width="1350" height="623" alt="4" src="https://github.com/user-attachments/assets/033deccb-a628-426b-9b13-055b4b13e575" />
+<img width="1365" height="680" alt="1" src="https://github.com/user-attachments/assets/6fd8ccde-85ed-4529-8ab3-5517326178ef" />
+<img width="1365" height="680" alt="3" src="https://github.com/user-attachments/assets/045ffb0b-26a1-400b-a6f6-a342ef927213" />
+<img width="1350" height="623" alt="4" src="https://github.com/user-attachments/assets/ba9c27cf-6025-4ae8-99b6-51dbd556a25e" />
 
 ## 🔧 Como Usar
 
@@ -97,6 +97,11 @@ Edite o arquivo `config.txt` para alterar:
 **Nome da Instituição:**
 ```
 INSTITUICAO: Nome da Sua Empresa
+```
+
+**Cargo/Função (aparece no certificado PDF):**
+```
+CARGO: Operador de Sistemas de Informática
 ```
 
 **Cor do Sistema:**
