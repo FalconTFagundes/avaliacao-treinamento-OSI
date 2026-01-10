@@ -1,0 +1,29 @@
+# CONFIGURAÇÕES DO SISTEMA
+# Linhas começando com # são comentários e serão ignoradas
+
+# NOME DA INSTITUIÇÃO
+# Este nome aparecerá no cabeçalho da página e no certificado PDF
+
+INSTITUICAO: BIGCARD
+
+# COR PRINCIPAL DO SISTEMA
+# Esta cor será usada em:
+# - Bordas do cabeçalho
+# - Botões principais
+# - Destaques visuais
+# - Fundo do certificado PDF
+# 
+# Formatos aceitos:
+# - Nome da cor em inglês: blue, red, green, yellow, orange, purple, pink, etc
+# - Código hexadecimal: #0066cc, #ff5733, #28a745, etc
+# - RGB: rgb(0, 102, 204) ou apenas os números: 0,102,204
+#
+# Exemplos de cores:
+# COR: blue          → Azul padrão
+# COR: #ff5733       → Laranja/vermelho
+# COR: #28a745       → Verde
+# COR: #ffc107       → Amarelo/dourado
+# COR: #6f42c1       → Roxo
+# COR: 255,0,0       → Vermelho (RGB)
+#
+COR: blue

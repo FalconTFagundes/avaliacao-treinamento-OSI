@@ -15,6 +15,92 @@ import os
 PORT = 3000
 DATA_FILE = "respostas.txt"
 QUESTIONS_FILE = "perguntas.txt"
+CONFIG_FILE = "config.txt"
+
+class ConfigLoader:
+    """Carrega configurações do sistema do arquivo config.txt"""
+    
+    def __init__(self, filename):
+        self.filename = filename
+        self.instituicao = "BIGCARD"  # Valor padrão
+        self.cor = "#0066cc"  # Azul padrão
+        self.cor_rgb = (0, 102, 204)  # RGB para PDF
+        self.load_config()
+    
+    def load_config(self):
+        """Lê o arquivo de configuração"""
+        if not os.path.exists(self.filename):
+            print(f"⚠️  Arquivo {self.filename} não encontrado. Usando valores padrão.")
+            return
+        
+        try:
+            with open(self.filename, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    # Ignora comentários e linhas vazias
+                    if not line or line.startswith('#'):
+                        continue
+                    
+                    # Processa configurações
+                    if ':' in line:
+                        key, value = line.split(':', 1)
+                        key = key.strip().upper()
+                        value = value.strip()
+                        
+                        if key == 'INSTITUICAO':
+                            self.instituicao = value
+                        elif key == 'COR':
+                            self.cor = value
+                            self.cor_rgb = self._parse_color(value)
+        except Exception as e:
+            print(f"⚠️  Erro ao ler {self.filename}: {e}. Usando valores padrão.")
+    
+    def _parse_color(self, color_str):
+        """Converte string de cor para RGB (para usar no PDF)"""
+        color_str = color_str.strip()
+        
+        # Se for RGB explícito (ex: "255,0,0" ou "rgb(255,0,0)")
+        if ',' in color_str:
+            color_str = color_str.replace('rgb(', '').replace(')', '').strip()
+            parts = [int(x.strip()) for x in color_str.split(',')]
+            if len(parts) == 3:
+                return tuple(parts)
+        
+        # Se for hexadecimal (ex: "#ff5733")
+        if color_str.startswith('#'):
+            hex_color = color_str.lstrip('#')
+            if len(hex_color) == 6:
+                return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+        
+        # Cores nomeadas comuns
+        color_map = {
+            'blue': (0, 102, 204),
+            'red': (220, 53, 69),
+            'green': (40, 167, 69),
+            'yellow': (255, 193, 7),
+            'orange': (253, 126, 20),
+            'purple': (111, 66, 193),
+            'pink': (232, 62, 140),
+            'black': (0, 0, 0),
+            'gray': (108, 117, 125),
+            'grey': (108, 117, 125),
+        }
+        
+        color_lower = color_str.lower()
+        if color_lower in color_map:
+            return color_map[color_lower]
+        
+        # Se não conseguir parsear, retorna azul padrão
+        return (0, 102, 204)
+    
+    def get_instituicao(self):
+        return self.instituicao
+    
+    def get_cor(self):
+        return self.cor
+    
+    def get_cor_rgb(self):
+        return self.cor_rgb
 
 class QuestionLoader:
     """Carrega e gerencia as perguntas do arquivo de texto"""
@@ -97,6 +183,16 @@ class QuestionLoader:
             return self.questions[index].get('alternativas', [])
         return []
 
+# Carrega as configurações no início
+try:
+    config_loader = ConfigLoader(CONFIG_FILE)
+    print(f"✅ Configurações carregadas:")
+    print(f"   • Instituição: {config_loader.get_instituicao()}")
+    print(f"   • Cor: {config_loader.get_cor()} (RGB: {config_loader.get_cor_rgb()})")
+except Exception as e:
+    print(f"❌ ERRO ao carregar configurações: {e}")
+    exit(1)
+
 # Carrega as perguntas no início
 try:
     question_loader = QuestionLoader(QUESTIONS_FILE)
@@ -171,6 +267,11 @@ def salvar_resposta(data):
 def get_formulario_html():
     """Gera o HTML do formulário dinamicamente com base nas perguntas carregadas"""
     
+    # Obtém configurações
+    instituicao = config_loader.get_instituicao()
+    cor = config_loader.get_cor()
+    cor_rgb = config_loader.get_cor_rgb()
+    
     # Gera o HTML das questões
     questions_html = ""
     for i in range(question_loader.get_total_questions()):
@@ -227,13 +328,13 @@ def get_formulario_html():
       background: white;
       padding: 40px;
       text-align: center;
-      border-bottom: 3px solid #0066cc;
+      border-bottom: 3px solid {cor};
       margin-bottom: 30px;
     }}
     .logo {{
       font-size: 32px;
       font-weight: 700;
-      color: #0066cc;
+      color: {cor};
       margin-bottom: 10px;
       letter-spacing: -0.5px;
     }}
@@ -258,7 +359,7 @@ def get_formulario_html():
       transition: border-color 0.3s;
     }}
     .question:hover {{
-      border-color: #0066cc;
+      border-color: {cor};
     }}
     .question-title {{
       font-size: 16px;
@@ -285,7 +386,7 @@ def get_formulario_html():
     }}
     .form-input:focus {{
       outline: none;
-      border-color: #0066cc;
+      border-color: {cor};
       background: white;
     }}
     textarea.form-input {{
@@ -306,7 +407,7 @@ def get_formulario_html():
       background: #fafafa;
     }}
     .radio-option:hover {{
-      border-color: #0066cc;
+      border-color: {cor};
       background: white;
     }}
     .radio-option input[type="radio"] {{
@@ -333,13 +434,14 @@ def get_formulario_html():
       letter-spacing: 0.5px;
     }}
     .btn-primary {{
-      background: #0066cc;
+      background: {cor};
       color: white;
     }}
     .btn-primary:hover {{
-      background: #0052a3;
+      background: {cor};
+      opacity: 0.9;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+      box-shadow: 0 4px 12px rgba({cor_rgb[0]}, {cor_rgb[1]}, {cor_rgb[2]}, 0.3);
     }}
     .btn-success {{
       background: #28a745;
@@ -387,7 +489,7 @@ def get_formulario_html():
 </head>
 <body>
   <div class="header">
-    <div class="logo">BIGCARD</div>
+    <div class="logo">{instituicao}</div>
     <div class="subtitle">Avaliação de Treinamento Técnico</div>
   </div>
 
@@ -404,8 +506,8 @@ def get_formulario_html():
 
     <!-- Questionário -->
     <div id="quizSection" class="hidden">
-      <div class="card" style="background: #e3f2fd; border-color: #0066cc;">
-        <p style="margin: 0; color: #0066cc; font-weight: 600;">
+      <div class="card" style="background: rgba({cor_rgb[0]}, {cor_rgb[1]}, {cor_rgb[2]}, 0.1); border-color: {cor};">
+        <p style="margin: 0; color: {cor}; font-weight: 600;">
           📝 Responda todas as {question_loader.get_total_questions()} questões abaixo
         </p>
       </div>
@@ -510,14 +612,14 @@ def get_formulario_html():
       const {{ jsPDF }} = window.jspdf;
       const pdf = new jsPDF();
       
-      // Cabeçalho
-      pdf.setFillColor(0, 102, 204);
+      // Cabeçalho com cor configurável
+      pdf.setFillColor({cor_rgb[0]}, {cor_rgb[1]}, {cor_rgb[2]});
       pdf.rect(0, 0, 210, 35, 'F');
       
       pdf.setTextColor(255, 255, 255);
       pdf.setFontSize(26);
       pdf.setFont(undefined, 'bold');
-      pdf.text('BIGCARD', 105, 20, {{ align: 'center' }});
+      pdf.text('{instituicao}', 105, 20, {{ align: 'center' }});
       
       pdf.setFontSize(12);
       pdf.setFont(undefined, 'normal');
@@ -553,11 +655,11 @@ def get_formulario_html():
       pdf.text('As respostas estão sendo analisadas.', 105, 170, {{ align: 'center' }});
       pdf.text('Este documento é apenas um comprovante de participação.', 105, 176, {{ align: 'center' }});
       
-      pdf.setDrawColor(0, 102, 204);
+      pdf.setDrawColor({cor_rgb[0]}, {cor_rgb[1]}, {cor_rgb[2]});
       pdf.line(20, 190, 190, 190);
       
       pdf.setFontSize(8);
-      pdf.text('BigCard - Sistema de Avaliação de Treinamento', 105, 195, {{ align: 'center' }});
+      pdf.text('{instituicao} - Sistema de Avaliação de Treinamento', 105, 195, {{ align: 'center' }});
       
       // Salvar
       pdf.save(`Comprovante_${{userData.nome.replace(/\\s+/g, '_')}}.pdf`);

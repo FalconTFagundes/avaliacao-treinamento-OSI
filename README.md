@@ -1,6 +1,6 @@
-# Sistema de Avaliação
+# BigCard Training - Sistema de Avaliação
 
-Sistema web de avaliação técnica para treinamentos operacionais. Desenvolvido em Python puro, sem dependências externas, com **perguntas totalmente configuráveis via arquivo de texto**.
+Sistema web de avaliação técnica para treinamento de operadores de sistemas de informática da BigCard. Desenvolvido em Python puro, sem dependências externas, com **perguntas e configurações totalmente personalizáveis via arquivos de texto**.
 
 ## 📋 Sobre
 
@@ -9,9 +9,10 @@ Sistema simples e eficiente que permite aplicar questionários técnicos para fu
 ## ⚡ Características
 
 - **Zero dependências**: Roda apenas com Python 3 nativo
+- **Totalmente configurável**: Nome da instituição e cores personalizáveis via `config.txt`
 - **Perguntas configuráveis**: Edite `perguntas.txt` sem mexer no código
 - **Interface web moderna**: Design responsivo e intuitivo
-- **Geração de PDF**: Comprovante automático de participação
+- **Geração de PDF**: Comprovante automático de participação com cores personalizadas
 - **Armazenamento local**: Todas as respostas em arquivo .txt
 - **Multi-dispositivo**: Acesso via celular, tablet ou computador na rede local
 - **Flexível**: Suporta questões abertas e múltipla escolha
@@ -36,6 +37,7 @@ Sistema simples e eficiente que permite aplicar questionários técnicos para fu
 ```
 avaliacao-treinamento-OSI/
 ├── server.py          # Servidor Python completo
+├── config.txt         # Configurações de cor e nome da instituição
 ├── perguntas.txt      # Arquivo de configuração das perguntas
 ├── executar.bat       # Atalho para iniciar no Windows
 └── respostas.txt      # Arquivo gerado automaticamente com as respostas
@@ -43,10 +45,10 @@ avaliacao-treinamento-OSI/
 
 ## 📸 Screenshots do Sistema
 
-<img width="1365" height="680" alt="1" src="https://github.com/user-attachments/assets/6405a26e-34c0-487c-bada-22078c2a0cb1" />
-<img width="1365" height="680" alt="3" src="https://github.com/user-attachments/assets/62ac5272-344c-4db5-8ac9-216b88d3bb97" />
-<img width="1350" height="623" alt="4" src="https://github.com/user-attachments/assets/c43e3861-c206-4b20-8202-2d5cc3d4a69c" />
-
+<img width="1365" height="680" alt="1" src="https://github.com/user-attachments/assets/30fe3639-7c27-4845-b975-dec8a8d24d86" />
+<img width="1348" height="679" alt="2" src="https://github.com/user-attachments/assets/faa6533d-8aa3-4ce5-9784-a923c200652c" />
+<img width="1365" height="680" alt="3" src="https://github.com/user-attachments/assets/fb335978-4274-4dc2-8d70-5a048abe2f42" />
+<img width="1350" height="623" alt="4" src="https://github.com/user-attachments/assets/58128e5a-dbc9-4078-9b93-71c5638411de" />
 
 
 ## 🔧 Como Usar
@@ -90,10 +92,47 @@ c) Terceira alternativa
 
 **Reinicie o servidor** após editar o arquivo de perguntas.
 
+### 4. Personalizar Visual e Nome da Instituição
+
+Edite o arquivo `config.txt` para alterar:
+
+**Nome da Instituição:**
+```
+INSTITUICAO: Nome da Sua Empresa
+```
+
+**Cor do Sistema:**
+```
+# Opção 1: Nome da cor em inglês
+COR: blue
+
+# Opção 2: Código hexadecimal
+COR: #ff5733
+
+# Opção 3: RGB (separado por vírgulas)
+COR: 255,0,0
+```
+
+**Exemplos de cores prontas:**
+- `COR: blue` → Azul (padrão)
+- `COR: #28a745` → Verde
+- `COR: #ffc107` → Amarelo/Dourado
+- `COR: #dc3545` → Vermelho
+- `COR: #6f42c1` → Roxo
+- `COR: #fd7e14` → Laranja
+
+A cor será aplicada automaticamente em:
+- Bordas do cabeçalho
+- Logo e destaques
+- Botões principais
+- Fundo do certificado PDF
+
+**Reinicie o servidor** após editar as configurações.
+
 ## 🔒 Segurança
 
 Sistema projetado para uso em rede local corporativa. Não possui autenticação ou criptografia, adequado para ambientes internos controlados.
 
 ## 📝 Licença
 
-Este projeto não possui licença comercial e é disponibilizado apenas para fins educacionais e demonstrativos.
+Uso interno BigCard.
