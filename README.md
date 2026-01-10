@@ -1,4 +1,4 @@
-Sistema de Avaliação
+# Sistema de Avaliação
 
 Sistema web de avaliação técnica para avaliação de treinamentos operacionais. Desenvolvido em Python puro, sem dependências externas, com **perguntas e configurações totalmente personalizáveis via arquivos de texto**.
 
